@@ -1,6 +1,6 @@
 import { FileMap } from "../enums/fileMap.ts";
 
-export default function BrainLogo() {
+export default function BrainInAJarLogo() {
 	return (
 		<div class="flex w-2xl mx-auto items-end gap-7">
 			<img src={FileMap.LOGO} alt="Cartoon image of a brain in a jar." class="w-72"   />
