@@ -23,7 +23,7 @@ export default async function chatModelList(): Promise<string[]> {
 		.filter((x: Model) => x.id.slice(0, 3) === "gpt")
 		.filter((x: Model) => !/\d{4}-\d{2}-\d{2}/.test(x.id))
 		.filter((x: Model) => {
-			const filtration_terms = ["chat", "tts", "turbo", "audio", "search", "transcribe", "image", "realtime"];
+			const filtration_terms = ["chat", "codex", "tts", "turbo", "audio", "search", "transcribe", "image", "realtime"];
 
 			return !filtration_terms.some((search_term: string) => x.id.includes(search_term));
 		})

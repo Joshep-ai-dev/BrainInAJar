@@ -3,7 +3,7 @@ import { FileMap } from "../enums/fileMap.ts";
 import { UserBrains } from "../types/brain.ts";
 import { CreateBrainsFields } from "../enums/createBrainsFields.ts";
 import chatModelList from "../utils/server/chatModelList.ts";
-import { CreateBrainForm2 } from "../components/CreateBrainForm.tsx";
+import { CreateBrainForm } from "../components/CreateBrainForm.tsx";
 
 
 export const handler = define.handlers({
@@ -44,16 +44,15 @@ export default define.page(async (_ctx) => {
 	return (
 		<div class="flex flex-col items-center pt-9 gap-6">
 			<h1 class="text-center text-brain-pink text-6xl font-logo">CREATE A NEW BRAIN!</h1>
-			<div>
-				<h2 class="text-brain-pink font-cherrybomb text-4xl ">YOUR CURRENT BRAINS</h2>
-				<p class="text-black text-xl">All brain names have to be unique.</p>
+			<h2 class="text-brain-pink font-cherrybomb text-4xl ">YOUR CURRENT BRAINS</h2>
+			<div class="flex flex-col items-start">
+				{
+					brainList.length === 0 ? <p class="font-chakra text-brain-text font-bold text-2xl">You currently have no brains! Don't worry you are in the right place!</p>: brainList.map((x, y) => 
+						<p class="text-2xl text-amber-200 font-chakra" key={y}>{x}</p>
+					)
+				}
 			</div>
-			{
-				brainList.length === 0 ? <p class="font-chakra text-brain-text font-bold text-2xl">You currently have no brains! Don't worry you are in the right place!</p>: brainList.map((x, y) => 
-					<p class="text-brain-text font-chakra text-2xl" key={y}>{x}</p>
-				)
-			}
-			<CreateBrainForm2 url="/createBrain" chatModels={chatModels}/>
+			<CreateBrainForm url="/createBrain" chatModels={chatModels}/>
 		</div>
 	);
 		

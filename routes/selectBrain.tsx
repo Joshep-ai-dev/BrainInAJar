@@ -37,12 +37,11 @@ export const handler = define.handlers({
 export default define.page( async function SelectBrain(_ctx) {
 	const userBrains: UserBrains = JSON.parse(await Deno.readTextFile(FileMap.BRAIN));
 	const brainNames = Object.keys(userBrains);
-	console.log(brainNames)
 	
 	return (
 		<div class="flex flex-col font-cherrybomb text-4xl items-center">
-			<h1 class="font-logo text-8xl">SELECT A BRAIN</h1>
-			<div class="flex flex-col items-start">
+			<h1 class="font-logo text-8xl text-brain-pink">SELECT A BRAIN</h1>
+			<div class="flex flex-col gap-y-3 items-start text-brain-text mt-8">
 				{
 					brainNames.map((x, y) => <BrainSelectionForm brainName={x} key={y}/>)
 				}

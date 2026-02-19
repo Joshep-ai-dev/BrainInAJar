@@ -16,7 +16,9 @@ export default define.page((ctx) => {
 					<Conversation userMessage={userMessage} agentMessage={agentMessage}/>
 				</div>
 			</Partial>
-			<Partial name="chatResponseForm"><ChatForm url={SiteMap.CONVERSATION} key={formKey}/></Partial>
+			<Partial name="chatResponseForm">
+				<ChatForm url={SiteMap.CONVERSATION} key={formKey}/>
+			</Partial>
 		</div>
 	)
 })
