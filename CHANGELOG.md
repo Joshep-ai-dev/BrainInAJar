@@ -44,3 +44,6 @@
     - Added BrainSelectionForm.tsx so users can click on and select brains.
     - Added brainSelectionFields.ts enum so the Post handler and the brain selection forms will by synced.
     - Added utils/server/getCookieValue.ts to get cookie values by passing in the cookie name and the cookie header.
+    - Refactored CreateBrainForm by dividing it into modular form inputs.
+    - Added GPT models from radio buttons by adding the chatModelList.ts utility function.
+    - Renamed some components

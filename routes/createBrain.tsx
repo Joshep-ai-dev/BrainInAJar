@@ -1,8 +1,9 @@
 import { define } from "../utils.ts";
 import { FileMap } from "../enums/fileMap.ts";
 import { UserBrains } from "../types/brain.ts";
-import CreateBrainForm from "../islands/CreateBrainForm.tsx";
 import { CreateBrainsFields } from "../enums/createBrainsFields.ts";
+import chatModelList from "../utils/server/chatModelList.ts";
+import { CreateBrainForm2 } from "../components/CreateBrainForm.tsx";
 
 
 export const handler = define.handlers({
@@ -33,10 +34,12 @@ export const handler = define.handlers({
 });
 
 
-export default define.page(async () => {
+
+
+export default define.page(async (_ctx) => {
 	const userBrains: UserBrains = JSON.parse(await Deno.readTextFile(FileMap.BRAIN));
 	const brainList = Object.keys(userBrains);
-
+	const chatModels: string[] = await chatModelList(); 
 
 	return (
 		<div class="flex flex-col items-center pt-9 gap-6">
@@ -50,7 +53,7 @@ export default define.page(async () => {
 					<p class="text-brain-text font-chakra text-2xl" key={y}>{x}</p>
 				)
 			}
-			<CreateBrainForm url="/createBrain"/>
+			<CreateBrainForm2 url="/createBrain" chatModels={chatModels}/>
 		</div>
 	);
 		
