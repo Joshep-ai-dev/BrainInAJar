@@ -51,4 +51,3 @@
 - **v-0.3.0**
     - Refactored selectBrain.tsx to a component which renders links that use url searchParams instead of cookies.
     - Removed components no longer necessary.
-

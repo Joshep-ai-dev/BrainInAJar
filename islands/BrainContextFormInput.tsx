@@ -14,7 +14,7 @@ export function BrainContextFormInput() {
 				class="bg-white font-quantico text-black text-base w-104 pl-2 rounded-lg"
 				name={CreateBrainsFields.CONTEXT}
 				id={CreateBrainsFields.CONTEXT}
-				placeholder="Your Brain Context Goes Here. Be Thorough"
+				placeholder="Your Brain Context Goes Here. Be Thorough."
 				required
 			/>
 		</>
