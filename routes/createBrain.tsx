@@ -1,6 +1,6 @@
 import { define } from "../utils.ts";
 import { FileMap } from "../enums/fileMap.ts";
-import { UserBrains } from "../types/brain.ts";
+import { UserBrains, Reasoning } from "../types/brain.ts";
 import { CreateBrainsFields } from "../enums/createBrainsFields.ts";
 import chatModelList from "../utils/server/chatModelList.ts";
 import { CreateBrainForm } from "../components/CreateBrainForm.tsx";
@@ -10,17 +10,21 @@ export const handler = define.handlers({
 	async POST(ctx) {
 		const form = await ctx.req.formData();
 		const name = form.get(CreateBrainsFields.NAME);
-		const context = form.get(CreateBrainsFields.CONTEXT);
 		const model = form.get(CreateBrainsFields.MODEL);
+		const system_role = form.get(CreateBrainsFields.SYSTEM);
+		const reasoning = form.get(CreateBrainsFields.REASONING);
 		const userBrains: UserBrains = JSON.parse(await Deno.readTextFile(FileMap.BRAIN));
+		//[name, model, reasoning, system_role].forEach(x => console.log(`${x}: ${typeof x === "string"}`));
 
-		if (typeof name === "string" && typeof context === "string" && typeof model === "string"){
+		if (typeof name === "string" && typeof model === "string" && typeof reasoning === "string" && typeof system_role === "string") {
+			const effort = reasoning as Reasoning;
+
 			if (!Object.hasOwn(userBrains, name)) {
 				userBrains[name] = {
-					context,
-					user: [""],
-					agent: [""],
 					model,
+					reasoning: {effort},
+					tools: [{type: "file_search", vector_store_ids: []}],
+					input: [{role: "system", content: system_role}]
 				}
 
 				Deno.writeTextFile(FileMap.BRAIN, JSON.stringify(userBrains));
@@ -32,8 +36,6 @@ export const handler = define.handlers({
 		return new Response(null, { status: 303, headers });
 	},
 });
-
-
 
 
 export default define.page(async (_ctx) => {
