@@ -54,3 +54,5 @@
     - Added reasoning radio buttons to CreateBrainForm.tsx component
     - Added BrainReasoningFormInput.tsx to components.
     - Added vector stores by default for each brain.
+    - Created deleteBrain.ts which allows users to delete brains.
+    - Created deleteVectorStore function which deleteBrain.ts uses to delete vector stores from your opan Ai account.
