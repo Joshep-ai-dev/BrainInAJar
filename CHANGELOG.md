@@ -53,3 +53,4 @@
     - Removed components no longer necessary.
     - Added reasoning radio buttons to CreateBrainForm.tsx component
     - Added BrainReasoningFormInput.tsx to components.
+    - Added vector stores by default for each brain.

@@ -4,6 +4,7 @@ import { UserBrains, Reasoning } from "../types/brain.ts";
 import { CreateBrainsFields } from "../enums/createBrainsFields.ts";
 import chatModelList from "../utils/server/chatModelList.ts";
 import { CreateBrainForm } from "../components/CreateBrainForm.tsx";
+import createVectorStore from "../utils/server/createVectorStore.ts";
 
 
 export const handler = define.handlers({
@@ -23,7 +24,9 @@ export const handler = define.handlers({
 				userBrains[name] = {
 					model,
 					reasoning: {effort},
-					tools: [{type: "file_search", vector_store_ids: []}],
+					tools: [
+						{ type: "file_search", vector_store_ids: [await createVectorStore(name)] }
+					],
 					input: [{role: "system", content: system_role}]
 				}
 
