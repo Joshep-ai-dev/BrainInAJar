@@ -21,16 +21,21 @@ export const handler = define.handlers({
 			const effort = reasoning as Reasoning;
 
 			if (!Object.hasOwn(userBrains, name)) {
+				const vector_store_id = await createVectorStore(name);
 				userBrains[name] = {
 					model,
 					reasoning: {effort},
 					tools: [
-						{ type: "file_search", vector_store_ids: [await createVectorStore(name)] }
+						{ type: "file_search", vector_store_ids: [vector_store_id] }
 					],
 					input: [{role: "system", content: system_role}]
 				}
 
-				Deno.writeTextFile(FileMap.BRAIN, JSON.stringify(userBrains));
+				await Deno.writeTextFile(FileMap.BRAIN, JSON.stringify(userBrains));
+				await Deno.mkdir(`${FileMap.BRAIN_FOOD}/${name}`, { recursive: true });
+
+				const filePath = `${FileMap.BRAIN_FOOD}/${name}/${vector_store_id}.json`;
+				await Deno.writeTextFile(filePath, JSON.stringify({}, null, 2));
 			}
 		}
 
