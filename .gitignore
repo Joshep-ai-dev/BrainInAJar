@@ -17,7 +17,7 @@ node_modules/
 vendor/
 
 # files and folders to be ignored
-data/
+#data/
 
 #psuedocode.txt
 pseudocode.txt

@@ -1,0 +1,1 @@
+{"1":{"model":"gpt-5.5","reasoning":{"effort":"none"},"tools":[{"type":"file_search","vector_store_ids":["vs_69f23288dccc8191ad798d5192c09e6b"]}],"input":[{"role":"system","content":"1"}]}}
