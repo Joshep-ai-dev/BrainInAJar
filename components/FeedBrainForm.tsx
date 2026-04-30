@@ -15,12 +15,6 @@ export default function FeedBrainForm(
           </label>
         ))}
       </div>
-      {/* <button
-        type="submit"
-        class="text-brain-text font-cherrybomb text-3xl hover:text-brain-pink"
-      >
-        CREATE VECTOR STORE
-      </button> */}
       {files.length === 0
           && (
            <p class="text-brain-text font-cherrybomb text-3xl">
